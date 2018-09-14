@@ -6,8 +6,16 @@ grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'fr.mbds.tp.Use
 grails.plugin.springsecurity.authority.className = 'fr.mbds.tp.Role'
 grails.plugin.springsecurity.requestMap.className = 'fr.mbds.tp.UserRole'
 grails.plugin.springsecurity.securityConfigType = 'Annotation'
+grails.plugin.springsecurity.successHandler.defaultTargetUrl = 'http://localhost:8087/home/index'
+grails.plugin.springsecurity.logout.postOnly = false
+grails.plugin.admin.accessRoot = "/admin"
+grails.plugin.admin.security.role = "ROLE_ADMIN"
+grails.plugin.admin.domains = [
+		"User",
+		"Role"
+]
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
-	[pattern: '/**',               access: ['permitAll']],
+	[pattern: '/**',             access: ['permitAll']],
 	[pattern: '/error',          access: ['permitAll']],
 	[pattern: '/index',          access: ['permitAll']],
 	[pattern: '/index.gsp',      access: ['permitAll']],
@@ -27,5 +35,3 @@ grails.plugin.springsecurity.filterChain.chainMap = [
 	[pattern: '/**/favicon.ico', filters: 'none'],
 	[pattern: '/**',             filters: 'JOINED_FILTERS']
 ]
-
-grails.plugin.springsecurity.logout.postOnly = false
