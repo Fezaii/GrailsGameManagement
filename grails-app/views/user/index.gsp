@@ -28,6 +28,7 @@
                         <thead>
                         <tr>
                             <th>Username</th>
+                            <th>Image</th>
                             <th>Password Expired</th>
                             <th>Account Locked</th>
                             <th>Account Expired</th>
@@ -38,7 +39,8 @@
                         <tbody>
                         <g:each in="${userList}" var="user">
                             <tr>
-                                <td><a href="/user/show/${user.id}">${user.username}</a></td>
+                                <td><a href="/user/show/${user.id}">${user.username}</a>
+                                <td>${user.image}</td>
                                 <td>${user.passwordExpired}</td>
                                 <td>${user.accountLocked}</td>
                                 <td>${user.accountExpired}</td>
