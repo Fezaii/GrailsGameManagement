@@ -47,14 +47,8 @@
                                         </div>
                                         <div class='form-group'>
                                             <label for='image'>Image * </label>
-                                            <input type="file" class="form-control" name="password" placeholder="Enter your Password" required="" id="password" />
+                                            <input type="file" class="form-control" name="image" id="image" />
                                         </div>
-
-
-                <div class='form-group'>
-                    <input type="hidden" class="form-control" name="_passwordExpired" /><input type="checkbox" name="passwordExpired" id="passwordExpired"  />
-                    <label for='passwordExpired'>Password Expired</label>
-                </div>
 
                 </fieldset>
                 <fieldset class="buttons">

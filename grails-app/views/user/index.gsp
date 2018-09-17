@@ -19,8 +19,36 @@
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
 
-            <f:table collection="${userList}" />
+            <div class="box">
+                <g:link class="create" action="create"><i class="fa fa-user-plus fa-2x" style="padding: 10px; /*border: solid; border-color: #0f0f0f*/" aria-hidden="true"></i></g:link>
+            <!-- /.box-header -->
+                <div class="box-body">
+                    <f:table collection="${userList}" />
 
+                    <table id="users" class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Password Expired</th>
+                            <th>Account Locked</th>
+                            <th>Account Expired</th>
+                            <th>Enabled</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <g:each in="${userList}" var="user">
+                            <tr>
+                                <td><a href="/user/show/${user.id}">${user.username}</a></td>
+                                <td>${user.passwordExpired}</td>
+                                <td>${user.accountLocked}</td>
+                                <td>${user.accountExpired}</td>
+                                <td>${user.enabled}</td>
+                            </tr>
+                        </g:each>
+                        </tbody>
+                    </table>
+                </div>
             <div class="pagination">
                 <g:paginate total="${userCount ?: 0}" />
             </div>
