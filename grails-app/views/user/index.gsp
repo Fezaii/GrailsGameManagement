@@ -23,7 +23,6 @@
                 <g:link class="create" action="create"><i class="fa fa-user-plus fa-2x" style="padding: 10px; /*border: solid; border-color: #0f0f0f*/" aria-hidden="true"></i></g:link>
             <!-- /.box-header -->
                 <div class="box-body">
-                    <f:table collection="${userList}" />
 
                     <table id="users" class="table table-bordered table-striped">
                         <thead>
