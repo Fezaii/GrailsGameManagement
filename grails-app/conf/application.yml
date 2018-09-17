@@ -130,3 +130,5 @@ environments:
 server:
     port : 8087
     contextPath: /
+    filePath: 'C:\wamp64\www'
+    fileUrl: 'http://localhost:8080/'

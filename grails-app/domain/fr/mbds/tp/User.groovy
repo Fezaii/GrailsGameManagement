@@ -4,6 +4,8 @@ import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString
 import grails.compiler.GrailsCompileStatic
 
+import java.awt.Image
+
 @GrailsCompileStatic
 @EqualsAndHashCode(includes='username')
 @ToString(includes='username', includeNames=true, includePackage=false)
@@ -13,11 +15,11 @@ class User implements Serializable {
 
     String username
     String password
+    String image
     boolean enabled = true
     boolean accountExpired
     boolean accountLocked
     boolean passwordExpired
-    String image
     Set<Role> getAuthorities() {
         (UserRole.findAllByUser(this) as List<UserRole>)*.role as Set<Role>
     }
@@ -37,7 +39,7 @@ class User implements Serializable {
     static constraints = {
         password nullable: false, blank: false, password: true
         username nullable: false, blank: false, unique: true
-        image nullable: false, blank: false, unique: true
+        image nullable: true, blank: false, unique: true
     }
 
     static mapping = {

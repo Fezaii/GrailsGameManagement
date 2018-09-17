@@ -6,6 +6,9 @@
         <title><g:message code="default.create.label" args="[entityName]" /></title>
     </head>
     <body>
+    <div class='form-group'>
+
+    </div>
         <a href="#create-user" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
         <div class="nav" role="navigation">
             <ul>
@@ -26,13 +29,37 @@
             </ul>
             </g:hasErrors>
             <g:form resource="${this.user}" method="POST">
-                <fieldset class="form">
-                    <f:all bean="user"/>
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                                <form action="/user/save" method="post" >
+                                    <fieldset class="form">
+
+                                        <div class='form-group'>
+                                            <label for='username'>Username * </label>
+                                            <input type="text" class="form-control" name="username" placeholder="Username" required="" id="username" />
+                                        </div>
+
+
+                                        <div class='form-group'>
+                                            <label for='password'>Password * </label>
+                                            <input type="password" class="form-control" name="password" placeholder="Enter your Password" required="" id="password" />
+                                        </div>
+                                        <div class='form-group'>
+                                            <label for='image'>Image * </label>
+                                            <input type="file" class="form-control" name="password" placeholder="Enter your Password" required="" id="password" />
+                                        </div>
+
+
+                <div class='form-group'>
+                    <input type="hidden" class="form-control" name="_passwordExpired" /><input type="checkbox" name="passwordExpired" id="passwordExpired"  />
+                    <label for='passwordExpired'>Password Expired</label>
+                </div>
+
                 </fieldset>
                 <fieldset class="buttons">
                     <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
                 </fieldset>
             </g:form>
-        </div>
     </body>
 </html>
