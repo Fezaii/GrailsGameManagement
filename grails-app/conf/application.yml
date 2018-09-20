@@ -128,7 +128,9 @@ environments:
                 defaultTransactionIsolation: 2 # TRANSACTION_READ_COMMITTED
 
 server:
-    port : 8087
+    port : 8089
     contextPath: /
-    filePath: 'C:\wamp64\www\tpgrails\images\'
-    fileUrl: 'http://127.0.0.1:8087/'
+    filePath: 'C:/wamp64/www/img/'
+    fileUrl: 'http://localhost:8089/'
+
+#   grails.springsecurity.rest

@@ -39,8 +39,8 @@
                         <tbody>
                         <g:each in="${userList}" var="user">
                             <tr>
-                                <td><a href="/user/show/${user.id}">${user.username}</a>
-                                <td>${user.image}</td>
+                                <td><a href="/user/show/${user.id}">${user.username} </a>
+                                <td><image src="http://localhost/img/cat.jpg" class="img-rounded" width="55px" height="55px"/></td>
                                 <td>${user.passwordExpired}</td>
                                 <td>${user.accountLocked}</td>
                                 <td>${user.accountExpired}</td>
@@ -53,5 +53,17 @@
             <div class="pagination">
                 <g:paginate total="${userCount ?: 0}" />
             </div>
+                <script>
+                    $(function () {
+                        $('#users').DataTable({
+                            'paging'      : true,
+                            'lengthChange': false,
+                            'searching'   : true,
+                            'ordering'    : true,
+                            'info'        : true,
+                            'autoWidth'   : false
+                        })
+                    })
+                </script>
     </body>
 </html>
