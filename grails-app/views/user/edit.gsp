@@ -26,13 +26,31 @@
                 </g:eachError>
             </ul>
             </g:hasErrors>
-            <g:form resource="${this.user}" method="PUT">
-                <g:hiddenField name="version" value="${this.user?.version}" />
-                <fieldset class="form">
-                    <f:all bean="user"/>
-                </fieldset>
+            <g:form resource="${this.user}" method="PUT"  enctype="multipart/form-data">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                <g:form action="/user/save" method="PUT" >
+
+                    <div class='form-group'>
+                        <label for='username'> Username* </label>
+                        <input type="text" class="form-control" name="username" placeholder="Username" required="" id="username" />
+                    </div>
+
+
+                    <div class='form-group'>
+                        <label for='password'> Password* </label>
+                        <input type="password" class="form-control" name="password" placeholder="Enter your Password" required="" id="password" />
+                    </div>
+
+
+                    <div class="form-group">
+                        <label> Profile image </label>
+                        <input type="file" name="profileImageFile"/>
+                    </div>
+                </g:form>
                 <fieldset class="buttons">
-                    <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+                    <g:submitButton name="update" class="save" value="${message(code: 'default.button.update.label', default: 'update')}" />
                 </fieldset>
             </g:form>
         </div>

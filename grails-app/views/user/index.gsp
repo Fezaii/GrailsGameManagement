@@ -40,7 +40,7 @@
                         <g:each in="${userList}" var="user">
                             <tr>
                                 <td><a href="/user/show/${user.id}">${user.username} </a>
-                                <td><image src="http://localhost/img/cat.jpg" class="img-rounded" width="55px" height="55px"/></td>
+                                <td><img src="http://localhost/img/${user.profileImageName}" class="img-rounded" width="55px" height="55px"/></td>
                                 <td>${user.passwordExpired}</td>
                                 <td>${user.accountLocked}</td>
                                 <td>${user.accountExpired}</td>

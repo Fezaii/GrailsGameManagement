@@ -28,12 +28,10 @@
                 </g:eachError>
             </ul>
             </g:hasErrors>
-            <g:form resource="${this.user}" method="POST">
+            <g:form resource="${this.user}" method="POST" enctype="multipart/form-data">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                                <form action="/user/save" method="post" >
-
                                         <div class='form-group'>
                                             <label for='username'> Username* </label>
                                             <input type="text" class="form-control" name="username" placeholder="Username" required="" id="username" />
@@ -44,26 +42,15 @@
                                             <label for='password'> Password* </label>
                                             <input type="password" class="form-control" name="password" placeholder="Enter your Password" required="" id="password" />
                                         </div>
-%{--                                        <div class='form-group'>
-                                            <label for='image'>Image* </label>
-                                            <input type="file" class="form-control" name="profileImageFile" id="image" />
-                                        </div>--}%
-            <g:form resource="${this.user}" method="POST" enctype="multipart/form-data">
-            %{--<g:form resource="${this.user}" method="POST" enctype="multipart/form-data">--}%
-
-            <div class="fieldcontain">
-                <label> Profile image </label>
-            <input type="file" name="profileImageFile"/>
-            </div>
-            </g:form>
+                                        <div class="fieldcontain">
+                                            <label> Profile image </label>
+                                            <input type="file" name="profileImageFile"/>
+                                        </div>
 
             <fieldset class="buttons">
             <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
             </fieldset>
-           %{-- <div class="form-group">
-            <label> Profil image </label>
-            <input type="file" class="form-control" name="image"id="image" />
-            </div>--}%
-                                </g:form>
+
+            </g:form>
     </body>
 </html>

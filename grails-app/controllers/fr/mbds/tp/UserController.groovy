@@ -8,7 +8,8 @@ import org.springframework.web.multipart.MultipartFile
 
 class UserController {
     UserService userService
-    def uploadUserProfileImageService
+
+    def uploadImService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
@@ -31,9 +32,7 @@ class UserController {
             return
         }
 
-        // Upload the image provided in the input and update the "profileImageName" field in the user to be saved.
-        // "profileImageName" contains the name of the image that has just been uploaded.
-        String profileImageFilename = uploadUserProfileImageService.uploadProfileImage(params.profileImageFile)
+        String profileImageFilename = uploadImService.uploadProfileImage(params.profileImageFile)
         user.profileImageName = profileImageFilename
 
         try {
@@ -50,23 +49,7 @@ class UserController {
             }
             '*' { respond user, [status: CREATED] }
         }
-        /*String profileImageFilename = uploadUserImageService.uploadProfileImage(params.image)
-        user.image = profileImageFilename //'C:/wamp64/www/tpgrails/images/cat.jpg'
 
-        try {
-            userService.save(user)
-        } catch (ValidationException e) {
-            respond user.errors, view:'create'
-            return
-        }
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'user.label', default: 'User'), user.id])
-                redirect user
-            }
-            '*' { respond user, [status: CREATED] }
-        }*/
     }
 
     def edit(Long id) {
@@ -100,7 +83,6 @@ class UserController {
             notFound()
             return
         }
-
         userService.delete(id)
 
         request.withFormat {
