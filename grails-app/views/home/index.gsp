@@ -30,8 +30,7 @@
 
 <div id="content" role="main">
     <section class="row colset-2-its">
-        <image src="http://localhost/img/admintools.png" class="img-thumbnail" height="1000" width="2000"/>
-
+        <image src="admintools.png" class="img-thumbnail" height="1000" width="2000"/>
     </section>
 
 </div>
