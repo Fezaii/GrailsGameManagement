@@ -78,16 +78,21 @@ class UserController {
         }
     }
 
-    def delete(Long id) {
-        if (id == null) {
+
+    def delete(User user) {
+
+        if (user == null) {
             notFound()
             return
         }
-        userService.delete(id)
+
+        Role removedRole=Role.findById(UserRole.findByUser(user).role.id);
+        UserRole.remove (user, removedRole)
+        user.delete flush:true
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'user.label', default: 'User'), id])
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'user.label', default: 'User'), user.id])
                 redirect action:"index", method:"GET"
             }
             '*'{ render status: NO_CONTENT }
