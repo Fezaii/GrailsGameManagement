@@ -50,9 +50,7 @@
                         </tbody>
                     </table>
                 </div>
-            <div class="pagination">
-                <g:paginate total="${userCount ?: 0}" />
-            </div>
+
                 <script>
                     $(function () {
                         $('#users').DataTable({

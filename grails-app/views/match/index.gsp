@@ -18,8 +18,32 @@
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <f:table collection="${matchList}" />
+            <div class="box-body">
 
+                <table id="matchs" class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Winner</th>
+                        <th>Score Winner</th>
+                        <th>Score Looser</th>
+                        <th>Looser</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <g:each in="${matchList}" var="match">
+                        <tr>
+                            <td><a href="/match/show/${match.id}">${match.id} </a>
+                            <td>${match.winner}</td>
+                            <td>${match.winnerScore}</td>
+                            <td>${match.looserScore}</td>
+                            <td>${match.looser}</td>
+                        </tr>
+                    </g:each>
+                    </tbody>
+                </table>
+            </div>
             <div class="pagination">
                 <g:paginate total="${matchCount ?: 0}" />
             </div>

@@ -34,10 +34,11 @@ class MessageController {
             respond message.errors, view:'create'
             return
         }
+        message.save flush:true
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'message.label', default: 'Message'), message.id])
+               // flash.message = message(code: 'default.created.message', args: [message(code: 'message.label', default: 'Message'), message.id])
                 redirect message
             }
             '*' { respond message, [status: CREATED] }
