@@ -34,6 +34,7 @@ class MatchController {
             respond match.errors, view:'create'
             return
         }
+        match.save flush:true
 
         request.withFormat {
             form multipartForm {
