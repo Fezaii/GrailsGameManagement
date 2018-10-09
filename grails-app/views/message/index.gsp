@@ -6,6 +6,23 @@
         <title><g:message code="default.list.label" args="[entityName]" /></title>
     </head>
     <body>
+    <content tag="nav">
+        <li class="controller">
+            <a href="${createLink(action: 'index', controller:'home') }" role="button"> Accueil </a>
+        </li>
+        <li class="controller">
+            <a href="${createLink(action: 'index', controller:'user') }" role="button"> Users </a>
+        </li>
+        <li class="controller">
+            <a href="${createLink(action: 'index', controller:'message') }" role="button"> Messages </a>
+        </li>
+        <li class="controller">
+            <a href="${createLink(action: 'index', controller:'match') }" role="button"> Matchs </a>
+        </li>
+        <li class="controller">
+            <a href="${createLink(action: 'index', controller:'logout') }" role="button"> Log out </a>
+        </li>
+    </content>
         <a href="#list-message" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
         <div class="nav" role="navigation">
             <ul>
@@ -14,13 +31,13 @@
             </ul>
         </div>
         <div id="list-message" class="content scaffold-list" role="main">
-            <h1><g:message code="default.list.label" args="[entityName]" /></h1>
+            <center><h1><g:message code="default.list.label" args="[entityName]" /></h1></center>
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
             <div class="box-body">
 
-                <table id="messages" class="table table-bordered table-striped">
+                <center><table id="messages" class="table table-bordered table-striped" style="width: auto">
                     <thead>
                     <tr>
                         <th>ID</th>
@@ -40,7 +57,7 @@
                         </tr>
                     </g:each>
                     </tbody>
-                </table>
+                </table></center>
             </div>
         </div>
     </body>

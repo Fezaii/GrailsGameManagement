@@ -86,8 +86,8 @@ class UserController {
             return
         }
 
-        Role removedRole=Role.findById(UserRole.findByUser(user).role.id);
-        UserRole.remove (user, removedRole)
+       // Role removedRole=Role.findById(UserRole.findByUser(user).role.id);
+        //UserRole.remove (user, removedRole)
         user.delete flush:true
 
         request.withFormat {

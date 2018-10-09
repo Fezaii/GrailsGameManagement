@@ -26,11 +26,25 @@
     </li>
 
 </content>
-
+<div class="panel panel-primary">
+    <div class="panel-heading"> <center><h1>Welcome to Administrator platform</h1></center></div>
+    <span class="pull-right clickable panel-toggle panel-collapse"><em class="fa fa-toggle-down"></em></span></div>
+<div class="panel-body" style="display: block;">
+    <center><p> This platform is used to manage Users, Roles, Messages and Matchs.
+        <br>Le menu en haut de page nous permet de passer de rubrique en rubrique en tout simplicité.
+        <br> Il contient cinq rubriques principales :
+        <br>Accueil :
+        <br>USERS :
+        <br>Messages :
+        <br>Matchs :
+        <br>Logout :
+    </p></center>
+</div>
+</div>
 
 <div id="content" role="main">
     <section class="row colset-2-its">
-        <img src="admintools.png" class="img-thumbnail" height="1000" width="2000"/>
+        <asset:image src="admintools.png" class="img-thumbnail" height="1000" width="2000"/>
     </section>
 
 </div>

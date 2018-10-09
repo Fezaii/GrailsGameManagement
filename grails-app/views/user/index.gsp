@@ -6,6 +6,28 @@
         <title><g:message code="default.list.label" args="[entityName]" /></title>
     </head>
     <body>
+    <content tag="nav">
+        <li class="controller">
+            <a href="${createLink(action: 'index', controller:'home') }" role="button"> Accueil </a>
+        </li>
+        <li class="controller">
+            <a href="${createLink(action: 'index', controller:'user') }" role="button"> Users </a>
+        </li>
+
+        <li class="controller">
+            <a href="${createLink(action: 'index', controller:'message') }" role="button"> Messages </a>
+        </li>
+
+        <li class="controller">
+            <a href="${createLink(action: 'index', controller:'match') }" role="button"> Matchs </a>
+        </li>
+
+        <li class="controller">
+            <a href="${createLink(action: 'index', controller:'logout') }" role="button"> Log out </a>
+        </li>
+
+    </content>
+
         <a href="#list-user" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
         <div class="nav" role="navigation">
             <ul>
@@ -14,7 +36,7 @@
             </ul>
         </div>
         <div id="list-user" class="content scaffold-list" role="main">
-            <h1><g:message code="default.list.label" args="[entityName]" /></h1>
+            <center><h1><g:message code="default.list.label" args="[entityName]" /></h1></center>
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
@@ -23,8 +45,7 @@
                 <g:link class="create" action="create"><i class="fa fa-user-plus fa-2x" style="padding: 10px; /*border: solid; border-color: #0f0f0f*/" aria-hidden="true"></i></g:link>
             <!-- /.box-header -->
                 <div class="box-body">
-
-                    <table id="users" class="table table-bordered table-striped">
+                    <center><table id="users" class="table table-bordered table-striped" style="width: auto" >
                         <thead>
                         <tr>
                             <th>Username</th>
@@ -48,20 +69,8 @@
                             </tr>
                         </g:each>
                         </tbody>
-                    </table>
+                    </table></center>
                 </div>
 
-                <script>
-                    $(function () {
-                        $('#users').DataTable({
-                            'paging'      : true,
-                            'lengthChange': false,
-                            'searching'   : true,
-                            'ordering'    : true,
-                            'info'        : true,
-                            'autoWidth'   : false
-                        })
-                    })
-                </script>
     </body>
 </html>
