@@ -24,12 +24,11 @@ class UploadImService implements GrailsConfigurationAware {
     @SuppressWarnings('JavaToPackageAccess')
     String uploadProfileImage(MultipartFile file) {
 
-        String filename = UUID.randomUUID().toString() + '.jpg'
+        String filename = UUID.randomUUID().toString()+'.jpg'
         File folder = new File(cdnFolder + '/' + filename)
         folder.createNewFile()
         file.transferTo(new File(cdnFolder + '/' + filename))
         filename
     }
-
 
 }

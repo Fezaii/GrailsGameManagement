@@ -7,25 +7,45 @@
     </head>
     <body>
     <content tag="nav">
-        <li class="controller">
-            <a href="${createLink(action: 'index', controller:'home') }" role="button"> Accueil </a>
-        </li>
-        <li class="controller">
-            <a href="${createLink(action: 'index', controller:'user') }" role="button"> Users </a>
-        </li>
 
-        <li class="controller">
-            <a href="${createLink(action: 'index', controller:'message') }" role="button"> Messages </a>
-        </li>
+        <sec:ifAnyGranted roles='ROLE_ADMIN'>
+            <a>Administrateur</a>
+        %{--<g:sec></g:sec>--}%
+            <li class="controller">
+                <a href="${createLink(action: 'index', controller:'home') }" role="button"> Accueil </a>
+            </li>
+            <li class="controller">
+                <a href="${createLink(action: 'index', controller:'user') }" role="button"> Users </a>
+            </li>
 
-        <li class="controller">
-            <a href="${createLink(action: 'index', controller:'match') }" role="button"> Matchs </a>
-        </li>
+            <li class="controller">
+                <a href="${createLink(action: 'index', controller:'message') }" role="button"> Messages </a>
+            </li>
 
-        <li class="controller">
-            <a href="${createLink(action: 'index', controller:'logout') }" role="button"> Log out </a>
-        </li>
+            <li class="controller">
+                <a href="${createLink(action: 'index', controller:'match') }" role="button"> Matchs </a>
+            </li>
 
+            <li class="controller">
+                <a href="${createLink(action: 'index', controller:'logout') }" role="button"> Log out </a>
+            </li>
+        </sec:ifAnyGranted>
+
+        <sec:ifAnyGranted roles='ROLE_USER'>
+            <li class="controller">
+                <a href="${createLink(action: 'index', controller:'home') }" role="button"> Accueil </a>
+            </li>
+            <li class="controller">
+                <a href="/user/show/${sec.loggedInUserInfo(field: 'id')}" role="button"> Profile </a>
+            </li>
+            <li class="controller">
+                <a href="${createLink(action: 'index', controller:'logout') }" role="button"> Log out </a>
+            </li>
+        </sec:ifAnyGranted>
+
+        <li class= "controller">
+            <a> ${sec.loggedInUserInfo(field: 'username')} </a>
+        </li>
     </content>
 
         <a href="#list-user" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>

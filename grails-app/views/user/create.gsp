@@ -1,27 +1,38 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link href="style.css" rel="stylesheet" type="text/css">
+        <script src="jquery-3.0.0.js" type="text/javascript"></script>
+        <script src="script.js" type="text/javascript"></script>
         <meta name="layout" content="main" />
         <g:set var="entityName" value="${message(code: 'user.label', default: 'User')}" />
         <title><g:message code="default.create.label" args="[entityName]" /></title>
     </head>
     <body>
     <content tag="nav">
-        <li class="controller">
-            <a href="${createLink(action: 'index', controller:'home') }" role="button"> Accueil </a>
-        </li>
-        <li class="controller">
-            <a href="${createLink(action: 'index', controller:'user') }" role="button"> Users </a>
-        </li>
-        <li class="controller">
-            <a href="${createLink(action: 'index', controller:'message') }" role="button"> Messages </a>
-        </li>
-        <li class="controller">
-            <a href="${createLink(action: 'index', controller:'match') }" role="button"> Matchs </a>
-        </li>
+        <sec:ifAnyGranted roles='ROLE_ADMIN'>
+            <a>Administrateur</a>
+            <li class="controller">
+                <a href="${createLink(action: 'index', controller:'home') }" role="button"> Accueil </a>
+            </li>
+            <li class="controller">
+                <a href="${createLink(action: 'index', controller:'user') }" role="button"> Users </a>
+            </li>
+
+            <li class="controller">
+                <a href="${createLink(action: 'index', controller:'message') }" role="button"> Messages </a>
+            </li>
+
+            <li class="controller">
+                <a href="${createLink(action: 'index', controller:'match') }" role="button"> Matchs </a>
+            </li>
+        </sec:ifAnyGranted>
+
         <li class="controller">
             <a href="${createLink(action: 'index', controller:'logout') }" role="button"> Log out </a>
         </li>
+
+
     </content>
     <div class='form-group'>
 
@@ -61,8 +72,13 @@
                                         </div>
                                         <div class='form-group'>
                                             <label> Profile image </label>
-                                            <input type="file" class="form-control" name="profileImageFile"/>
-                                        </div>
+                                        %{--<div class="container" >--}%
+                                        <input type="file" class="form-control" name="profileImageFile"/></div>
+
+                                        %{--<div class="upload-area"  id="uploadfile">--}%
+                                        %{--<h1>Drag and Drop file here<br/>Or<br/>Click to select file</h1>--}%
+                                        %{--</div>--}%
+                                        %{--</div>--}%
 
             <fieldset class="buttons">
             <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />

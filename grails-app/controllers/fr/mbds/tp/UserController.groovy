@@ -18,6 +18,9 @@ class UserController {
         respond userService.list(params), model:[userCount: userService.count()]
     }
 
+    def getCurrentUser(){
+        respond userService
+    }
     def show(Long id) {
         respond userService.get(id)
     }
@@ -86,7 +89,7 @@ class UserController {
             return
         }
 
-       // Role removedRole=Role.findById(UserRole.findByUser(user).role.id);
+        //Role removedRole=Role.findById(UserRole.findByUser(user).role.id);
         //UserRole.remove (user, removedRole)
         user.delete flush:true
 

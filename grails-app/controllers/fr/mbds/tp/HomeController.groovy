@@ -2,6 +2,14 @@ package fr.mbds.tp
 
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
+import org.springframework.security.core.GrantedAuthority
+import grails.plugin.springsecurity.userdetails.GormUserDetailsService
+import grails.plugin.springsecurity.userdetails.NoStackUsernameNotFoundException
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+import org.springframework.security.core.GrantedAuthority
+import org.springframework.security.core.userdetails.UserDetails
+import org.springframework.security.core.userdetails.UsernameNotFoundException
 
 class HomeController {
 
@@ -21,7 +29,6 @@ class HomeController {
     def create() {
         respond new Home(params)
     }
-
     def save(Home home) {
         if (home == null) {
             notFound()
