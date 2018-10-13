@@ -8,7 +8,7 @@ import org.springframework.dao.DataIntegrityViolationException
 
 class ApiController {
 
-    static allowedMethods = [list: 'GET',
+    static allowedMethods = [list:'GET',
                              show:'GET',
                              edit:'POST',
                              save:'POST',
@@ -16,81 +16,86 @@ class ApiController {
                              delete:'DELETE'
     ]
 
-
-
     def userService
+    def messageService
+    def matchService
 
     def index() {
-        switch (request.getMethod()) {
-            case "POST":
-                render text: "POST"
-                println request.getHeader(name: 'Allow')
-                break
-            case "GET" :
-                users()
-                break
-            default:
-                render text: "DEFAULT"
-                break
-        }
-    }
-
-
-    def users(){
-        switch (request.getMethod()) {
-
-            case "POST":
-                render text: "POST"
-                println request.getHeader(name: 'Allow')
-                break
-            case "GET" :
-                render userService.list () as JSON
-                break
-            default:
-                render text: "DEFAULT"
-                break
-        }
+        //redirect(action: "list", params: params)
     }
 
     def list() {
         params.max = Math.min(params.max ? params.int('max') : 50, 200)
-        def list = userService.list ()
-        def listObject =[userList: list, userTotal: userService.count()]
+        def list
+        def listObject
+        switch (params.entities){
+            case "users":
+                list = userService.list ()
+                listObject =[userList: list, userTotal: userService.count()]
+                break
+            case "matchs":
+                list = matchService.list ()
+                listObject =[matchList: list, matchTotal: matchService.count()]
+                break
+            case "messages":
+                list = messageService.list ()
+                listObject =[messageList: list, messageTotal: messageService.count()]
+                break
+        }
         withFormat {
             json { render list as JSON }
             xml { render listObject as XML }
         }
     }
 
+
+
+
+
     def create() {
-        render new User(params)
+        render new User(request.JSON)
     }
 
 
+
+
     def save() {
-        def user = new User(request.JSON)
-        if (!user.save(flush: true)) {
+
+        def entity
+        switch (params.entity){
+            case "user":
+                entity = new User(request.JSON)
+                break
+            case "match":
+                entity = new Match(request.JSON)
+                break
+            case "message":
+                entity = new Message(request.JSON)
+                break
+        }
+
+        if (!entity.save(flush: true)) {
             withFormat {
                 json {
                     response.status = 403
-                    render user.errors as JSON
+                    render entity.errors as JSON
                 }
                 xml {
                     response.status =403
-                    render user.errors as XML
+                    render entity.errors as XML
                 }
             }
             return
         }
-        flash.message = message(code: 'default.created.message', args: [message(code: 'user.label', default: '${className}'), user.id])
+        flash.message = message(code: 'default.created.message', args: [message(code: 'entity.label', default: 'entity'), entity.id])
         withFormat {
             json {
                 response.status = 201
-                render user as JSON
+                render entity as JSON
             }
             xml {
                 response.status = 201
-                render user.id
+                render entity.id
             }
         }
     }
