@@ -10,7 +10,6 @@
 
         <sec:ifAnyGranted roles='ROLE_ADMIN'>
             <a>Administrateur</a>
-            %{--<g:sec></g:sec>--}%
     <li class="controller">
         <a href="${createLink(action: 'index', controller:'home') }" role="button"> Accueil </a>
     </li>
@@ -29,7 +28,7 @@
     <li class="controller">
         <a href="${createLink(action: 'index', controller:'logout') }" role="button"> Log out </a>
     </li>
-    </sec:ifAnyGranted>
+        </sec:ifAnyGranted>
 
         <sec:ifAnyGranted roles='ROLE_USER'>
             <li class="controller">
@@ -54,12 +53,14 @@
 <div class="panel-body" style="display: block;">
     <center><p> This platform is used to manage Users, Roles, Messages and Matchs.
         <br>Le menu en haut de page nous permet de passer de rubrique en rubrique en tout simplicité.
-        <br> Il contient cinq rubriques principaux :
-        <br>Accueil : Update image
-        <br>USERS :
-        <br>Messages : drag & drop value
-        <br>Matchs :
-        <br>Logout : extention d'image
+        <br> Il contient sept rubriques principaux :
+        <br>"Admistrateur" si l'utilisateur est un admin
+        <br>Accueil
+        <br>Users
+        <br>Messages
+        <br>Matchs
+        <br>Logout
+        <br>Nom de l'utilisateur
     </p></center>
 </div>
 </div>

@@ -64,22 +64,20 @@
                                             <label for='username'> Username* </label>
                                             <input type="text" class="form-control" name="username" placeholder="Username" required="" id="username" />
                                         </div>
-
-
                                         <div class='form-group'>
                                             <label for='password'> Password* </label>
                                             <input type="password" class="form-control" name="password" placeholder="Enter your Password" required="" id="password" />
                                         </div>
                                         <div class='form-group'>
                                             <label> Profile image </label>
-                                        %{--<div class="container" >--}%
-                                        <input type="file" class="form-control" name="profileImageFile"/></div>
+                                        <input type="file" class="form-control" name="profileImageFile" id ="file"/></div>
 
-                                        %{--<div class="upload-area"  id="uploadfile">--}%
-                                        %{--<h1>Drag and Drop file here<br/>Or<br/>Click to select file</h1>--}%
-                                        %{--</div>--}%
-                                        %{--</div>--}%
-
+        <div class="container" >
+            <!-- Drag and Drop container-->
+            <div class="upload-area"  id="uploadfile" name="profileImageFile">
+                <h1>Drag and Drop file here<br/>Or<br/>Click to select file</h1>
+            </div>
+        </div>
             <fieldset class="buttons">
             <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
             </fieldset>

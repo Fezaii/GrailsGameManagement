@@ -26,7 +26,7 @@ class UploadImService implements GrailsConfigurationAware {
     String uploadProfileImage(MultipartFile file) {
         def extention = FilenameUtils.getExtension(file.originalFilename)
 
-        String filename = UUID.randomUUID().toString()+ extention
+        String filename = UUID.randomUUID().toString()+ '.' + extention
         File folder = new File(cdnFolder + '/' + filename)
         folder.createNewFile()
         file.transferTo(new File(cdnFolder + '/' + filename))
