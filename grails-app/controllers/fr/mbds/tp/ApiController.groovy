@@ -155,7 +155,17 @@ class ApiController {
 
 
     def update() {
-
+        if (params.id==null) {
+            withFormat {
+                json {
+                    response.status = 400
+                }
+                xml {
+                    response.status = 400
+                }
+            }
+            return
+        }
         def entity
         switch (params.entity){
             case "user":
@@ -177,7 +187,7 @@ class ApiController {
         }
 
         entity.properties= request.JSON
-        
+
         if (!entity.save(flush: true)) {
             withFormat {
                 json {
@@ -206,7 +216,17 @@ class ApiController {
 
 
     def delete() {
-
+        if (params.id==null) {
+            withFormat {
+                json {
+                    response.status = 400
+                }
+                xml {
+                    response.status = 400
+                }
+            }
+            return
+        }
         def entity
         switch (params.entity){
             case "user":
