@@ -115,6 +115,7 @@ class ApiController {
     }
 
     def show() {
+
         if (params.id==null) {
             withFormat {
                 json {
@@ -175,7 +176,8 @@ class ApiController {
             return
         }
 
-        println(entity.properties)
+        entity.properties= request.JSON
+        
         if (!entity.save(flush: true)) {
             withFormat {
                 json {
