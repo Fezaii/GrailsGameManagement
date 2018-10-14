@@ -39,17 +39,17 @@ class UrlMappings {
 
         "/$controller/users/$action?(.$format)?"{
             entities ="users"
-            action = [GET: "list", POST: "save"]
+            action = [GET: "list", POST: "save",PUT: "notfound", DELETE: "notfound"]
         }
 
         "/$controller/messages/$action?(.$format)?"{
             entities ="messages"
-            action = [GET: "list", POST: "save"]
+            action = [GET: "list", POST: "save",PUT: "notfound", DELETE: "notfound"]
         }
 
         "/$controller/matchs/$action?(.$format)?"{
             entities ="matchs"
-            action = [GET: "list", POST: "save"]
+            action = [GET: "list", POST: "save",PUT: "notfound", DELETE: "notfound"]
         }
 
 

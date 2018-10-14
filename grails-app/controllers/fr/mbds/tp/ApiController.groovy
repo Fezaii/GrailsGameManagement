@@ -10,10 +10,10 @@ class ApiController {
 
     static allowedMethods = [list:'GET',
                              show:'GET',
-                             edit:'POST',
                              save:'POST',
                              update:['POST','PUT'],
-                             delete:'DELETE'
+                             delete:'DELETE',
+                             notfound:['PUT','DELETE']
     ]
 
     def userService
@@ -60,9 +60,14 @@ class ApiController {
 
 
     def save() {
-
+        def action
+        if(params.entity==null){
+            action = params.entities
+        }else{
+            action = params.entity
+        }
         def entity
-        switch (params.entity){
+        switch (action){
             case "user":
                 entity = new User(request.JSON)
                 break
@@ -72,16 +77,25 @@ class ApiController {
             case "message":
                 entity = new Message(request.JSON)
                 break
+            case "users":
+                entity = new User(request.JSON)
+                break
+            case "matchs":
+                entity = new Match(request.JSON)
+                break
+            case "messages":
+                entity = new Message(request.JSON)
+                break
         }
 
         if (!entity.save(flush: true)) {
             withFormat {
                 json {
-                    response.status = 403
+                    response.status = 400
                     render entity.errors as JSON
                 }
                 xml {
-                    response.status =403
+                    response.status =400
                     render entity.errors as XML
                 }
             }
@@ -101,7 +115,17 @@ class ApiController {
     }
 
     def show() {
-
+        if (params.id==null) {
+            withFormat {
+                json {
+                    response.status = 400
+                }
+                xml {
+                    response.status = 400
+                }
+            }
+            return
+        }
         def entity
         switch (params.entity){
             case "user":
@@ -129,7 +153,6 @@ class ApiController {
     }
 
 
-
     def update() {
 
         def entity
@@ -153,8 +176,6 @@ class ApiController {
         }
 
         println(entity.properties)
-        entity.properties = request.JSON
-        println(entity.properties)
         if (!entity.save(flush: true)) {
             withFormat {
                 json {
@@ -168,7 +189,6 @@ class ApiController {
             }
             return
         }
-        flash.message = message(code: 'default.created.message', args: [message(code: 'entity.label', default: 'entity'), entity.id])
         withFormat {
             json {
                 response.status = 204
@@ -180,5 +200,58 @@ class ApiController {
             }
         }
     }
+
+
+
+    def delete() {
+
+        def entity
+        switch (params.entity){
+            case "user":
+                entity = User.get(params.id)
+                break
+            case "match":
+                entity = Match.get(params.id)
+                break
+            case "message":
+                entity = Message.get(params.id)
+                break
+        }
+        if (!entity) {
+            withFormat {
+                json { response.sendError(404) }
+                xml { response.sendError(404) }
+            }
+            return
+        }
+        try {
+            entity.delete(flush: true)
+            withFormat {
+                json {
+                    response.status = 204
+                    render ''
+                }
+                xml {
+                    response.status = 204
+                    render ''
+                }
+            }
+        }
+        catch (DataIntegrityViolationException e) {
+            withFormat {
+                json { response.sendError(500) }
+                xml { response.sendError(500) }
+            }
+        }
+    }
+
+
+    def notfound() {
+        withFormat {
+            json { response.sendError(404) }
+            xml { response.sendError(404) }
+        }
+    }
+
 
 }
