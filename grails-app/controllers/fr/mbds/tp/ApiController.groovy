@@ -128,4 +128,69 @@ class ApiController {
         }
     }
 
+
+
+    def update() {
+
+        def entity
+        switch (params.entity){
+            case "user":
+                entity = User.get(params.id)
+                break
+            case "match":
+                entity = Match.get(params.id)
+                break
+            case "message":
+                entity = Message.get(params.id)
+                break
+        }
+        if (!entity) {
+            withFormat {
+                json { response.sendError(404) }
+                xml { response.sendError(404) }
+            }
+            return
+        }
+
+        if (params.version) {
+            def version = params.version.toLong()
+            if (entity.version > version) {
+                entity.errors.rejectValue("version", "default.optimistic.locking.failure",
+                        [message(code: 'entity.label', default: 'entity')] as Object[],
+                        "Another user has updated this entity while you were editing")
+                withFormat {
+                    json { response.sendError(409) }
+                    xml { response.sendError(409) }
+                }
+                return
+            }
+        }
+
+        entity.properties = params
+
+        if (!entity.save(flush: true)) {
+            withFormat {
+                json {
+                    response.status = 403
+                    render entity.errors as JSON
+                }
+                xml {
+                    response.status = 403
+                    render entity.errors as XML
+                }
+            }
+            return
+        }
+        withFormat {
+            json {
+                response.status = 204
+                render entity as JSON
+            }
+            xml {
+                response.status = 204
+                render ''
+            }
+        }
+    }
+
 }
