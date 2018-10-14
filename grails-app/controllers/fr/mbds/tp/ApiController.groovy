@@ -100,4 +100,32 @@ class ApiController {
         }
     }
 
+    def show() {
+
+        def entity
+        switch (params.entity){
+            case "user":
+                entity = User.get(params.id)
+                break
+            case "match":
+                entity = Match.get(params.id)
+                break
+            case "message":
+                entity = Message.get(params.id)
+                break
+        }
+        if (!entity) {
+            withFormat {
+                json { response.sendError(404) }
+                xml { response.sendError(404) }
+            }
+            return
+        }
+        def object = [entity: entity]
+        withFormat {
+            json { render object as JSON }
+            xml { render object as XML }
+        }
+    }
+
 }
