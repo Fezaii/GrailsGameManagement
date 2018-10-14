@@ -4,6 +4,7 @@ Partie Grails (Hamza Boudradar)
 Nous avons mis en place une plateforme de gestion d'utilisateurs avec des roles, leurs messages et leurs matchs.
 
 Le rendu de projet prend donc la forme de ce site permettant d’administrer ou consulter son contenu selon le rôle de l’utilisateur authentifié
+"http://localhost:8085"
 
 INITIALISATION
 Users, Messages et Matchs (cf. Bootstrap.groovy)
@@ -26,6 +27,21 @@ Création et modification d'un utilisateur (username, mot de passe et image)
 Affichage d'une liste d'utilisateurs ou d'un utilisateur (username, image et mot de passe)
 Suppression d'un profil utilisateur
 
+Messages "/message/"
+Création et modification d'un message.
+Affichage d'une liste des messages ou d'un message (destinateur, destinataire, le contenu du message)
+Suppression d'un message.
+
+Matchs "/match/"
+Création et modification d'un match.
+Affichage d'une liste des matchs ou d'un match (le noms des 2 utilisateurs et leur scores respectifs)
+Suppression d'un match.
+
+Logout
+Deconnexion du compte courant et redirection vers la page Login.
+
 BONUS ACCOMPLIS
 Uploader les fichiers en faisant un simple drag’n’drop en Ajax de l'image sur le champ en question
+Uploader l'image avec n'importe quelle extension (ioFileNameUtils)
+
                                 

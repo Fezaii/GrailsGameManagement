@@ -8,7 +8,7 @@ import org.springframework.web.multipart.MultipartFile
 
 class UserController {
     UserService userService
-
+    RoleService roleService
     def uploadImService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
@@ -18,9 +18,6 @@ class UserController {
         respond userService.list(params), model:[userCount: userService.count()]
     }
 
-    def getCurrentUser(){
-        respond userService
-    }
     def show(Long id) {
         respond userService.get(id)
     }
@@ -37,6 +34,7 @@ class UserController {
 
         String profileImageFilename = uploadImService.uploadProfileImage(params.profileImageFile)
         user.profileImageName = profileImageFilename
+        //UserRole.create(user,roleService.get(0) ,true)
 
         try {
             userService.save(user)

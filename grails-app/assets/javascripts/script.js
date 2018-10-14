@@ -30,17 +30,17 @@ $(function() {
 
         $("h1").text("Upload");
 
-        var profileImageFile = e.originalEvent.dataTransfer.files;
+        var file = e.originalEvent.dataTransfer.files;
         var fd = new FormData();
 
-        fd.append('profileImageFile', profileImageFile[0]);
+        fd.append('profileImageFile', file[0]);
 
         uploadData(fd);
     });
 
     // Open file selector on div click
     $("#uploadfile").click(function(){
-        $("#profileImageFile").click();
+        $("#file").click();
     });
 
     // file selected
@@ -59,7 +59,7 @@ $(function() {
 function uploadData(formdata){
 
     $.ajax({
-        url: 'http://localhost:8085/user/index',
+        url: 'http://localhost:8085/user/create',
         type: 'post',
         data: formdata,
         contentType: false,
