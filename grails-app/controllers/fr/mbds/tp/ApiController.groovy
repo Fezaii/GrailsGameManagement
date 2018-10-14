@@ -21,7 +21,7 @@ class ApiController {
     def matchService
 
     def index() {
-        //redirect(action: "list", params: params)
+        redirect(action: "show", params: params)
     }
 
     def list() {
@@ -152,22 +152,9 @@ class ApiController {
             return
         }
 
-        if (params.version) {
-            def version = params.version.toLong()
-            if (entity.version > version) {
-                entity.errors.rejectValue("version", "default.optimistic.locking.failure",
-                        [message(code: 'entity.label', default: 'entity')] as Object[],
-                        "Another user has updated this entity while you were editing")
-                withFormat {
-                    json { response.sendError(409) }
-                    xml { response.sendError(409) }
-                }
-                return
-            }
-        }
-
-        entity.properties = params
-
+        println(entity.properties)
+        entity.properties = request.JSON
+        println(entity.properties)
         if (!entity.save(flush: true)) {
             withFormat {
                 json {
@@ -181,6 +168,7 @@ class ApiController {
             }
             return
         }
+        flash.message = message(code: 'default.created.message', args: [message(code: 'entity.label', default: 'entity'), entity.id])
         withFormat {
             json {
                 response.status = 204
