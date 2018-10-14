@@ -4,6 +4,7 @@ import grails.config.Config
 import grails.core.support.GrailsConfigurationAware
 import grails.gorm.services.Service
 import groovy.transform.CompileStatic
+import org.apache.commons.io.FilenameUtils
 import org.springframework.web.multipart.MultipartFile
 
 @SuppressWarnings('GrailsStatelessService')
@@ -23,8 +24,9 @@ class UploadImService implements GrailsConfigurationAware {
 
     @SuppressWarnings('JavaToPackageAccess')
     String uploadProfileImage(MultipartFile file) {
+        def extention = FilenameUtils.getExtension(file.originalFilename)
 
-        String filename = UUID.randomUUID().toString()+'.jpg'
+        String filename = UUID.randomUUID().toString()+ extention
         File folder = new File(cdnFolder + '/' + filename)
         folder.createNewFile()
         file.transferTo(new File(cdnFolder + '/' + filename))

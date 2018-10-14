@@ -10,7 +10,6 @@
 
         <sec:ifAnyGranted roles='ROLE_ADMIN'>
             <a>Administrateur</a>
-        %{--<g:sec></g:sec>--}%
             <li class="controller">
                 <a href="${createLink(action: 'index', controller:'home') }" role="button"> Accueil </a>
             </li>
@@ -31,7 +30,6 @@
             </li>
         </sec:ifAnyGranted>
 
-        <sec:ifAnyGranted roles='ROLE_USER'>
             <li class="controller">
                 <a href="${createLink(action: 'index', controller:'home') }" role="button"> Accueil </a>
             </li>
@@ -41,8 +39,6 @@
             <li class="controller">
                 <a href="${createLink(action: 'index', controller:'logout') }" role="button"> Log out </a>
             </li>
-        </sec:ifAnyGranted>
-
         <li class= "controller">
             <a> ${sec.loggedInUserInfo(field: 'username')} </a>
         </li>
