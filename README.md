@@ -54,7 +54,7 @@ Tous les documents  concernant l'API REST et la collection des tests Postman son
 
 [Documents REST API GAMEMANAGEMENT](RestAPI_Documents/README.md)
 
-[Tests REST API GAMEMANAGEMENT](RestAPI_TestsPostman/Grails%20Rest%20API%20Tests.postman_collection.json)                                  
+[Tests REST API GAMEMANAGEMENT](RestAPI_TestsPostman/README.md)                                  
 
 ### Bonus
 
