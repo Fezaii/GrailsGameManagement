@@ -60,6 +60,17 @@ class ApiController {
 
 
     def save() {
+        if (request.JSON==[:]) {
+            withFormat {
+                json {
+                    response.status = 400
+                }
+                xml {
+                    response.status = 400
+                }
+            }
+            return
+        }
         def action
         if(params.entity==null){
             action = params.entities
@@ -91,11 +102,11 @@ class ApiController {
         if (!entity.save(flush: true)) {
             withFormat {
                 json {
-                    response.status = 400
+                    response.status = 303
                     render entity.errors as JSON
                 }
                 xml {
-                    response.status =400
+                    response.status =303
                     render entity.errors as XML
                 }
             }
