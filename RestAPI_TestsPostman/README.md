@@ -8,4 +8,4 @@ Les tests des 3 entitiés (User,Message,Match) ne passent pas (401 Unauthorized)
 
 * Recuperation du "access_token"
 
-* l'insertion du "access_token" généré dans le Bear_token de chaque requéte
+* l'insertion du "access_token" généré dans le Bearer_token de chaque requéte
