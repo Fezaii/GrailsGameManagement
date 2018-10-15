@@ -1,6 +1,6 @@
 # REST API GAMEMANAGEMENT
 
-The service is running on 'http:localhost:8085/'.
+The service is running on ['http:localhost:8085/']().
 
 ## Open Endpoints
 
