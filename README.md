@@ -1,5 +1,5 @@
 # GrailsGameManagement
-Partie Grails (Hamza Boudradar)
+## Partie I : Grails (Hamza Boudradar)
 
 Nous avons mis en place une plateforme de gestion d'utilisateurs avec des roles, leurs messages et leurs matchs.
 
@@ -44,4 +44,19 @@ BONUS ACCOMPLIS
 Uploader les fichiers en faisant un simple drag’n’drop en Ajax de l'image sur le champ en question
 Uploader l'image avec n'importe quelle extension (ioFileNameUtils)
 
-                                
+##Partie II : REST API (Fezai Ahmed)
+
+Nous avons mis en place une API HTTP REST qui fournie plusieurs services en utilisant les methodes http suivantes:
+
+[GET, POST,PUT,DELETE].
+
+Tous les documents  concernant l'API REST et la collection des tests Postman sont accessibles dans les liens suivants : 
+
+[Documents REST API GAMEMANAGEMENT](RestAPI_Documents/README.md)
+
+[Tests REST API GAMEMANAGEMENT](RestAPI_TestsPostman/Grails%20Rest%20API%20Tests.postman_collection.json)                                  
+
+###Bonus
+
+
+L'implémentation d'une couche de sécurité pour notre API a été réalisée en utilisant l’extension « Spring Security Rest » 

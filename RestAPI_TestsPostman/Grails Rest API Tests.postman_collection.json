@@ -40,7 +40,11 @@
 											"    pm.response.to.not.be.error; ",
 											"    pm.response.to.have.jsonBody(\"\"); ",
 											"    pm.response.to.not.have.jsonBody(\"error\"); ",
-											"});"
+											"});",
+											"",
+											"tests[\"Response contains username\"] = responseBody.has(\"username\");",
+											"tests[\"Response contains id\"] = responseBody.has(\"id\");",
+											"tests[\"Response contains password\"] = responseBody.has(\"password\");"
 										],
 										"type": "text/javascript"
 									}
@@ -79,7 +83,10 @@
 										"exec": [
 											"pm.test(\"Status code should be  200\", function () {",
 											"    pm.response.to.have.status(200);",
-											"});"
+											"});",
+											"tests[\"Response contains username\"] = responseBody.has(\"username\");",
+											"tests[\"Response contains id\"] = responseBody.has(\"id\");",
+											"tests[\"Response contains password\"] = responseBody.has(\"password\");"
 										],
 										"type": "text/javascript"
 									}
@@ -287,8 +294,8 @@
 									"script": {
 										"id": "b4c95924-11e5-40ce-8597-702688ee9a24",
 										"exec": [
-											"pm.test(\"Status code should be  400 : user exist\", function () {",
-											"    pm.response.to.have.status(400);",
+											"pm.test(\"Status code should be  303 : See Other\", function () {",
+											"    pm.response.to.have.status(303);",
 											"});"
 										],
 										"type": "text/javascript"
@@ -736,7 +743,11 @@
 											"    pm.response.to.not.be.error; ",
 											"    pm.response.to.have.jsonBody(\"\"); ",
 											"    pm.response.to.not.have.jsonBody(\"error\"); ",
-											"});"
+											"});",
+											"",
+											"tests[\"Response contains target\"] = responseBody.has(\"target\");",
+											"tests[\"Response contains content\"] = responseBody.has(\"content\");",
+											"tests[\"Response contains author\"] = responseBody.has(\"author\");"
 										],
 										"type": "text/javascript"
 									}
@@ -775,7 +786,10 @@
 										"exec": [
 											"pm.test(\"Status code should be  200\", function () {",
 											"    pm.response.to.have.status(200);",
-											"});"
+											"});",
+											"tests[\"Response contains target\"] = responseBody.has(\"target\");",
+											"tests[\"Response contains content\"] = responseBody.has(\"content\");",
+											"tests[\"Response contains author\"] = responseBody.has(\"author\");"
 										],
 										"type": "text/javascript"
 									}
@@ -1192,7 +1206,7 @@
 					"name": "DELETE",
 					"item": [
 						{
-							"name": "Delete User",
+							"name": "Delete Message",
 							"event": [
 								{
 									"listen": "test",
@@ -1236,7 +1250,7 @@
 							"response": []
 						},
 						{
-							"name": "Delete User Without Param ",
+							"name": "Delete Message Without Param",
 							"event": [
 								{
 									"listen": "test",
@@ -1274,7 +1288,7 @@
 							"response": []
 						},
 						{
-							"name": "Delete User Not exist",
+							"name": "Delete Message Not exist",
 							"event": [
 								{
 									"listen": "test",
@@ -1356,7 +1370,12 @@
 											"    pm.response.to.not.be.error; ",
 											"    pm.response.to.have.jsonBody(\"\"); ",
 											"    pm.response.to.not.have.jsonBody(\"error\"); ",
-											"});"
+											"});",
+											"",
+											"tests[\"Response contains winner\"] = responseBody.has(\"winner\");",
+											"tests[\"Response contains looser\"] = responseBody.has(\"looser\");",
+											"tests[\"Response contains winnerScore\"] = responseBody.has(\"winnerScore\");",
+											"tests[\"Response contains looserScore\"] = responseBody.has(\"looserScore\");"
 										],
 										"type": "text/javascript"
 									}
@@ -1999,106 +2018,6 @@
 					"response": []
 				},
 				{
-					"name": "Get all messages",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "9f8c0019-b6bf-4561-8844-1ea2b31fea37",
-								"exec": [
-									"",
-									""
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"id": "d87a1481-32ae-44dc-a170-4aa9481cee20",
-								"exec": [
-									"pm.test(\"Status code should be  401 : Unauthorized\", function () {",
-									"    pm.response.to.have.status(401);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "http://localhost:8085/api/messages",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8085",
-							"path": [
-								"api",
-								"messages"
-							]
-						},
-						"description": "get all users "
-					},
-					"response": []
-				},
-				{
-					"name": "Get all matchs",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "9f8c0019-b6bf-4561-8844-1ea2b31fea37",
-								"exec": [
-									"",
-									""
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"id": "d87a1481-32ae-44dc-a170-4aa9481cee20",
-								"exec": [
-									"pm.test(\"Status code should be  401 : Unauthorized\", function () {",
-									"    pm.response.to.have.status(401);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "http://localhost:8085/api/matchs",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8085",
-							"path": [
-								"api",
-								"matchs"
-							]
-						},
-						"description": "get all users "
-					},
-					"response": []
-				},
-				{
 					"name": "authentification and generate a token",
 					"event": [
 						{
@@ -2109,6 +2028,8 @@
 									"pm.test(\"Status code should be  200\", function () {",
 									"    pm.response.to.have.status(200);",
 									"});",
+									"tests[\"Response contains access_token\"] = responseBody.has(\"access_token\");",
+									"tests[\"Response contains expires_in\"] = responseBody.has(\"expires_in\");",
 									""
 								],
 								"type": "text/javascript"
@@ -2142,6 +2063,133 @@
 							"path": [
 								"api",
 								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create New user  Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "aaf0b028-b0ac-418b-9331-bbf0da0bd61e",
+								"exec": [
+									"pm.test(\"Status code should be  401 : Unauthorized\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{username:\"ahmedhov\", password:\"password\"}"
+						},
+						"url": {
+							"raw": "http://localhost:8085/api/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"user"
+							]
+						},
+						"description": "Create a new user Ahmed1"
+					},
+					"response": []
+				},
+				{
+					"name": "Update user  Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1852c2a7-33b4-4abe-8317-4fb1b59df4b8",
+								"exec": [
+									"pm.test(\"Status code should be  401 : Unauthorized\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{username: \"ahmedhhh\"}"
+						},
+						"url": {
+							"raw": "http://localhost:8085/api/user?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"user"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3f769540-d450-48d5-8ac4-88b08547ba8a",
+								"exec": [
+									"pm.test(\"Status code should be  401 : Unauthorized\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8085/api/user?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"user"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
 							]
 						}
 					},
