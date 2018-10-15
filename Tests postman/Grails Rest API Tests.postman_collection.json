@@ -1,0 +1,2153 @@
+{
+	"info": {
+		"_postman_id": "70c167da-ecfd-427c-9294-3fc26d06f149",
+		"name": "Grails Rest API Tests",
+		"description": "tester l'ensemble des requetes et vérifier si elles répondent aux attentes de fonctionnalité, de fiabilité,de sécurité, et renvoient les bonnes réponses. ",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "GET",
+					"item": [
+						{
+							"name": "Get all users",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "9f8c0019-b6bf-4561-8844-1ea2b31fea37",
+										"exec": [
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "d87a1481-32ae-44dc-a170-4aa9481cee20",
+										"exec": [
+											"pm.test(\"Status code should be  200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"",
+											"pm.test(\"response should be okay to process\", function () { ",
+											"    pm.response.to.not.be.error; ",
+											"    pm.response.to.have.jsonBody(\"\"); ",
+											"    pm.response.to.not.have.jsonBody(\"error\"); ",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8085/api/users",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"api",
+										"users"
+									]
+								},
+								"description": "get all users "
+							},
+							"response": []
+						},
+						{
+							"name": "Show some user with param Id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "b44ae226-f803-4f54-837c-a613d1ba1615",
+										"exec": [
+											"pm.test(\"Status code should be  200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8085/api/user?id=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"api",
+										"user"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Show some user without param",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "a0bcd120-ab0f-43cf-babc-7a376de4ac6b",
+										"exec": [
+											"pm.test(\"Status code should be  400 : BAd request\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8085/api/user",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"api",
+										"user"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show not exist user",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "b6ff11ee-fe8f-4fb0-bd86-ab98e7292556",
+										"exec": [
+											"pm.test(\"Status code should be  404 : not found\", function () {",
+											"    pm.response.to.have.status(404);",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8085/api/user?id=7",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"api",
+										"user"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "7"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "POST",
+					"item": [
+						{
+							"name": "Create New user ",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "aaf0b028-b0ac-418b-9331-bbf0da0bd61e",
+										"exec": [
+											"pm.test(\"Status code should be  201 :created\", function () {",
+											"    pm.response.to.have.status(201);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{username:\"ahmedhov\", password:\"password\"}"
+								},
+								"url": {
+									"raw": "http://localhost:8085/api/user",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"api",
+										"user"
+									]
+								},
+								"description": "Create a new user Ahmed1"
+							},
+							"response": []
+						},
+						{
+							"name": "Create  user  with /users",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "aaf0b028-b0ac-418b-9331-bbf0da0bd61e",
+										"exec": [
+											"pm.test(\"Status code should be  201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{username: \"ahmed6\", password: \"password\"}"
+								},
+								"url": {
+									"raw": "http://localhost:8085/api/users",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"api",
+										"users"
+									]
+								},
+								"description": "Create a new user Ahmed1"
+							},
+							"response": []
+						},
+						{
+							"name": "Create User already exist ",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "b4c95924-11e5-40ce-8597-702688ee9a24",
+										"exec": [
+											"pm.test(\"Status code should be  400 : user exist\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{username: \"ahmedhov\", password: \"password\"}"
+								},
+								"url": {
+									"raw": "http://localhost:8085/api/user",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"api",
+										"user"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create User already exist  /users",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "b4c95924-11e5-40ce-8597-702688ee9a24",
+										"exec": [
+											"pm.test(\"Status code should be  400 : user exist\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{username: \"ahmed1\", password: \"password\"}"
+								},
+								"url": {
+									"raw": "http://localhost:8085/api/users",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"api",
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "add new user without param",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "c6e64cf6-abbd-4164-9b91-9dcb85a972f3",
+										"exec": [
+											"pm.test(\"Status code should be  400 : Bad request\", function () {",
+											"    pm.response.to.have.status(400);",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8085/api/user",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"api",
+										"user"
+									]
+								},
+								"description": "shoul return bad request"
+							},
+							"response": []
+						},
+						{
+							"name": "add new user without param /users",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "c6e64cf6-abbd-4164-9b91-9dcb85a972f3",
+										"exec": [
+											"pm.test(\"Status code should be  400 : Bad request\", function () {",
+											"    pm.response.to.have.status(400);",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8085/api/users",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"api",
+										"users"
+									]
+								},
+								"description": "shoul return bad request"
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "PUT",
+					"item": [
+						{
+							"name": "Update user ",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "1852c2a7-33b4-4abe-8317-4fb1b59df4b8",
+										"exec": [
+											"pm.test(\"Status code should be  204 :No Content\", function () {",
+											"    pm.response.to.have.status(204);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{username: \"ahmedhhh\"}"
+								},
+								"url": {
+									"raw": "http://localhost:8085/api/user?id=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"api",
+										"user"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update user without param",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "316d3bb3-dd4f-470f-93ba-f61ba45d58d2",
+										"exec": [
+											"pm.test(\"Status code should be  400 : Bad request\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{username: \"ahmedhhh\"}"
+								},
+								"url": {
+									"raw": "http://localhost:8085/api/user",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"api",
+										"user"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update user not exist",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "d0ea7a12-616c-4189-8448-466b0fa0322a",
+										"exec": [
+											"pm.test(\"Status code should be  404 :Not Found\", function () {",
+											"    pm.response.to.have.status(404);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{username: \"ahmedhhh\"}"
+								},
+								"url": {
+									"raw": "http://localhost:8085/api/user?id=10",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"api",
+										"user"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "DELETE",
+					"item": [
+						{
+							"name": "Delete User",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "3f769540-d450-48d5-8ac4-88b08547ba8a",
+										"exec": [
+											"pm.test(\"Status code should be  500 \", function () {",
+											"    pm.response.to.have.status(500);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8085/api/user?id=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"api",
+										"user"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete User Without Param ",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "28bcfc43-f1e5-4bd7-b459-3acb6f7d6fb6",
+										"exec": [
+											"pm.test(\"Status code should be  400: Bad Request \", function () {",
+											"    pm.response.to.have.status(400);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8085/api/user",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"api",
+										"user"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete User Not exist",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "1403e879-ffe3-42a6-b5be-3f769933fb34",
+										"exec": [
+											"pm.test(\"Status code should be  404: Bad Request \", function () {",
+											"    pm.response.to.have.status(404);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8085/api/user?id=7",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"api",
+										"user"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "7"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			]
+		},
+		{
+			"name": "Message",
+			"item": [
+				{
+					"name": "GET",
+					"item": [
+						{
+							"name": "Get all messages",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "9f8c0019-b6bf-4561-8844-1ea2b31fea37",
+										"exec": [
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "d87a1481-32ae-44dc-a170-4aa9481cee20",
+										"exec": [
+											"pm.test(\"Status code should be  200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"",
+											"pm.test(\"response should be okay to process\", function () { ",
+											"    pm.response.to.not.be.error; ",
+											"    pm.response.to.have.jsonBody(\"\"); ",
+											"    pm.response.to.not.have.jsonBody(\"error\"); ",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8085/api/messages",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"api",
+										"messages"
+									]
+								},
+								"description": "get all users "
+							},
+							"response": []
+						},
+						{
+							"name": "Show some message with param Id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "b44ae226-f803-4f54-837c-a613d1ba1615",
+										"exec": [
+											"pm.test(\"Status code should be  200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8085/api/message?id=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"api",
+										"message"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Show some message without param",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "a0bcd120-ab0f-43cf-babc-7a376de4ac6b",
+										"exec": [
+											"pm.test(\"Status code should be  400 : BAd request\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8085/api/message",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"api",
+										"message"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show not exist message",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "b6ff11ee-fe8f-4fb0-bd86-ab98e7292556",
+										"exec": [
+											"pm.test(\"Status code should be  404 : not found\", function () {",
+											"    pm.response.to.have.status(404);",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8085/api/message?id=7",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"api",
+										"message"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "7"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "POST",
+					"item": [
+						{
+							"name": "Create New message",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "aaf0b028-b0ac-418b-9331-bbf0da0bd61e",
+										"exec": [
+											"pm.test(\"Status code should be  201 :created\", function () {",
+											"    pm.response.to.have.status(201);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"target\": {\"id\": 2},\"content\": \"blablabla\",\"author\": {\"id\": 1}}"
+								},
+								"url": {
+									"raw": "http://localhost:8085/api/message",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"api",
+										"message"
+									]
+								},
+								"description": "Create a new user Ahmed1"
+							},
+							"response": []
+						},
+						{
+							"name": "Create  message  with /messages",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "aaf0b028-b0ac-418b-9331-bbf0da0bd61e",
+										"exec": [
+											"pm.test(\"Status code should be  201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"target\": {\"id\": 2},\"content\": \"blablablabla\",\"author\": {\"id\": 1}}"
+								},
+								"url": {
+									"raw": "http://localhost:8085/api/messages",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"api",
+										"messages"
+									]
+								},
+								"description": "Create a new user Ahmed1"
+							},
+							"response": []
+						},
+						{
+							"name": "add new message without param",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "c6e64cf6-abbd-4164-9b91-9dcb85a972f3",
+										"exec": [
+											"pm.test(\"Status code should be  400 : Bad request\", function () {",
+											"    pm.response.to.have.status(400);",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8085/api/message",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"api",
+										"message"
+									]
+								},
+								"description": "shoul return bad request"
+							},
+							"response": []
+						},
+						{
+							"name": "add new message without param /messages",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "c6e64cf6-abbd-4164-9b91-9dcb85a972f3",
+										"exec": [
+											"pm.test(\"Status code should be  400 : Bad request\", function () {",
+											"    pm.response.to.have.status(400);",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8085/api/messages",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"api",
+										"messages"
+									]
+								},
+								"description": "shoul return bad request"
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "PUT",
+					"item": [
+						{
+							"name": "Update message",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "1852c2a7-33b4-4abe-8317-4fb1b59df4b8",
+										"exec": [
+											"pm.test(\"Status code should be  204 :No Content\", function () {",
+											"    pm.response.to.have.status(204);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"target\": {\"id\": 2},\"content\": \"blablabljffea\",\"author\": {\"id\": 1}}"
+								},
+								"url": {
+									"raw": "http://localhost:8085/api/message?id=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"api",
+										"message"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update message without param",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "316d3bb3-dd4f-470f-93ba-f61ba45d58d2",
+										"exec": [
+											"pm.test(\"Status code should be  400 : Bad request\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"target\": {\"id\": 2},\"content\": \"blablabljffea\",\"author\": {\"id\": 1}}"
+								},
+								"url": {
+									"raw": "http://localhost:8085/api/message",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"api",
+										"message"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update message not exist",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "d0ea7a12-616c-4189-8448-466b0fa0322a",
+										"exec": [
+											"pm.test(\"Status code should be  404 :Not Found\", function () {",
+											"    pm.response.to.have.status(404);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"target\": {\"id\": 2},\"content\": \"blablabljffea\",\"author\": {\"id\": 1}}"
+								},
+								"url": {
+									"raw": "http://localhost:8085/api/message?id=10",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"api",
+										"message"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "DELETE",
+					"item": [
+						{
+							"name": "Delete User",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "3f769540-d450-48d5-8ac4-88b08547ba8a",
+										"exec": [
+											"pm.test(\"Status code should be  204 \", function () {",
+											"    pm.response.to.have.status(204);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8085/api/message?id=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"api",
+										"message"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete User Without Param ",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "28bcfc43-f1e5-4bd7-b459-3acb6f7d6fb6",
+										"exec": [
+											"pm.test(\"Status code should be  400: Bad Request \", function () {",
+											"    pm.response.to.have.status(400);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8085/api/message",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"api",
+										"message"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete User Not exist",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "1403e879-ffe3-42a6-b5be-3f769933fb34",
+										"exec": [
+											"pm.test(\"Status code should be  404: Not Found \", function () {",
+											"    pm.response.to.have.status(404);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8085/api/message?id=15",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"api",
+										"message"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "15"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			]
+		},
+		{
+			"name": "Match",
+			"item": [
+				{
+					"name": "GET",
+					"item": [
+						{
+							"name": "Get all matchs",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "9f8c0019-b6bf-4561-8844-1ea2b31fea37",
+										"exec": [
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "d87a1481-32ae-44dc-a170-4aa9481cee20",
+										"exec": [
+											"pm.test(\"Status code should be  200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"",
+											"pm.test(\"response should be okay to process\", function () { ",
+											"    pm.response.to.not.be.error; ",
+											"    pm.response.to.have.jsonBody(\"\"); ",
+											"    pm.response.to.not.have.jsonBody(\"error\"); ",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8085/api/matchs",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"api",
+										"matchs"
+									]
+								},
+								"description": "get all users "
+							},
+							"response": []
+						},
+						{
+							"name": "Show some match with param Id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "b44ae226-f803-4f54-837c-a613d1ba1615",
+										"exec": [
+											"pm.test(\"Status code should be  200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8085/api/match?id=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"api",
+										"match"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Show some match without param",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "a0bcd120-ab0f-43cf-babc-7a376de4ac6b",
+										"exec": [
+											"pm.test(\"Status code should be  400 : BAd request\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8085/api/match",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"api",
+										"match"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show not exist match",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "b6ff11ee-fe8f-4fb0-bd86-ab98e7292556",
+										"exec": [
+											"pm.test(\"Status code should be  404 : not found\", function () {",
+											"    pm.response.to.have.status(404);",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8085/api/match?id=7",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"api",
+										"match"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "7"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "POST",
+					"item": [
+						{
+							"name": "Create New match",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "aaf0b028-b0ac-418b-9331-bbf0da0bd61e",
+										"exec": [
+											"pm.test(\"Status code should be  201 :created\", function () {",
+											"    pm.response.to.have.status(201);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"winnerScore\": 12,\"looserScore\": 3,\"winner\": {\"id\": 2},\"looser\": {\"id\": 1}}"
+								},
+								"url": {
+									"raw": "http://localhost:8085/api/match",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"api",
+										"match"
+									]
+								},
+								"description": "Create a new user Ahmed1"
+							},
+							"response": []
+						},
+						{
+							"name": "Create  match  with /matchs",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "aaf0b028-b0ac-418b-9331-bbf0da0bd61e",
+										"exec": [
+											"pm.test(\"Status code should be  201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"winnerScore\": 42,\"looserScore\": 23,\"winner\": {\"id\": 2},\"looser\": {\"id\": 1}}"
+								},
+								"url": {
+									"raw": "http://localhost:8085/api/matchs",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"api",
+										"matchs"
+									]
+								},
+								"description": "Create a new user Ahmed1"
+							},
+							"response": []
+						},
+						{
+							"name": "add new match without param",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "c6e64cf6-abbd-4164-9b91-9dcb85a972f3",
+										"exec": [
+											"pm.test(\"Status code should be  400 : Bad request\", function () {",
+											"    pm.response.to.have.status(400);",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8085/api/match",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"api",
+										"match"
+									]
+								},
+								"description": "shoul return bad request"
+							},
+							"response": []
+						},
+						{
+							"name": "add new match without param /matchs",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "c6e64cf6-abbd-4164-9b91-9dcb85a972f3",
+										"exec": [
+											"pm.test(\"Status code should be  400 : Bad request\", function () {",
+											"    pm.response.to.have.status(400);",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8085/api/matchs",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"api",
+										"matchs"
+									]
+								},
+								"description": "shoul return bad request"
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "PUT",
+					"item": [
+						{
+							"name": "Update match",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "1852c2a7-33b4-4abe-8317-4fb1b59df4b8",
+										"exec": [
+											"pm.test(\"Status code should be  204 :No Content\", function () {",
+											"    pm.response.to.have.status(204);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"winnerScore\": 111,\"looserScore\": 23,\"winner\": {\"id\": 2},\"looser\": {\"id\": 1}}"
+								},
+								"url": {
+									"raw": "http://localhost:8085/api/match?id=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"api",
+										"match"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update match without param",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "316d3bb3-dd4f-470f-93ba-f61ba45d58d2",
+										"exec": [
+											"pm.test(\"Status code should be  400 : Bad request\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"winnerScore\": 111,\"looserScore\": 23,\"winner\": {\"id\": 2},\"looser\": {\"id\": 1}}"
+								},
+								"url": {
+									"raw": "http://localhost:8085/api/match",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"api",
+										"match"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update match not exist",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "d0ea7a12-616c-4189-8448-466b0fa0322a",
+										"exec": [
+											"pm.test(\"Status code should be  404 :Not Found\", function () {",
+											"    pm.response.to.have.status(404);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"winnerScore\": 111,\"looserScore\": 23,\"winner\": {\"id\": 2},\"looser\": {\"id\": 1}}"
+								},
+								"url": {
+									"raw": "http://localhost:8085/api/match?id=10",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"api",
+										"match"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "DELETE",
+					"item": [
+						{
+							"name": "Delete Match",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "3f769540-d450-48d5-8ac4-88b08547ba8a",
+										"exec": [
+											"pm.test(\"Status code should be  204 \", function () {",
+											"    pm.response.to.have.status(204);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8085/api/match?id=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"api",
+										"match"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Match Without Param",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "28bcfc43-f1e5-4bd7-b459-3acb6f7d6fb6",
+										"exec": [
+											"pm.test(\"Status code should be  400: Bad Request \", function () {",
+											"    pm.response.to.have.status(400);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8085/api/match",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"api",
+										"match"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Match Not exist",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "1403e879-ffe3-42a6-b5be-3f769933fb34",
+										"exec": [
+											"pm.test(\"Status code should be  404: Not Found \", function () {",
+											"    pm.response.to.have.status(404);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8085/api/Match?id=7",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"api",
+										"Match"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "7"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			]
+		},
+		{
+			"name": "with Spring security Login",
+			"item": [
+				{
+					"name": "Get all users",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "9f8c0019-b6bf-4561-8844-1ea2b31fea37",
+								"exec": [
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "d87a1481-32ae-44dc-a170-4aa9481cee20",
+								"exec": [
+									"pm.test(\"Status code should be  401 : Unauthorized\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8085/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"users"
+							]
+						},
+						"description": "get all users "
+					},
+					"response": []
+				},
+				{
+					"name": "Get all messages",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "9f8c0019-b6bf-4561-8844-1ea2b31fea37",
+								"exec": [
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "d87a1481-32ae-44dc-a170-4aa9481cee20",
+								"exec": [
+									"pm.test(\"Status code should be  401 : Unauthorized\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8085/api/messages",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"messages"
+							]
+						},
+						"description": "get all users "
+					},
+					"response": []
+				},
+				{
+					"name": "Get all matchs",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "9f8c0019-b6bf-4561-8844-1ea2b31fea37",
+								"exec": [
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "d87a1481-32ae-44dc-a170-4aa9481cee20",
+								"exec": [
+									"pm.test(\"Status code should be  401 : Unauthorized\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8085/api/matchs",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"matchs"
+							]
+						},
+						"description": "get all users "
+					},
+					"response": []
+				},
+				{
+					"name": "authentification and generate a token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8b51a6f1-0d24-494d-b2ff-2896e087de92",
+								"exec": [
+									"pm.test(\"Status code should be  200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"username\": \"admin\",\"password\": \"password\"}"
+						},
+						"url": {
+							"raw": "http://localhost:8085/api/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

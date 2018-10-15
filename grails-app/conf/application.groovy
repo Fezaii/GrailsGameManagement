@@ -42,8 +42,8 @@ grails.plugin.springsecurity.rest.login.endpointUrl = "/api/login"
 grails.plugin.springsecurity.rest.login.failureStatusCode = 401
 grails.plugin.springsecurity.rest.token.storage.jwt.useEncryptedJwt = true
 grails.plugin.springsecurity.conf.rest.token.storage.jwt.secret = 'qrD6h8K6S9503Q06Y6Rfk21TErImPYqa'
-/*
-grails.plugin.springsecurity.filterChain.chainMap = [
+
+/*grails.plugin.springsecurity.filterChain.chainMap = [
 		[pattern: '/api/**',      filters: 'JOINED_FILTERS,-anonymousAuthenticationFilter,-exceptionTranslationFilter,-authenticationProcessingFilter,-securityContextPersistenceFilter,-rememberMeAuthenticationFilter'],
 		[pattern: '/**',             filters: 'JOINED_FILTERS,-restTokenValidationFilter,-restExceptionTranslationFilter'],
 ]*/
